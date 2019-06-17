@@ -19,6 +19,19 @@ void AITurn(){
 
 }
 
+int check(int value){
+
+	do {
+			Correct = scanf("%d", &value);
+			while (getchar() != '\n');
+			if (Correct != 1) printf("Incorrect value, please use number value \n");
+			if (value<1) printf("Incorrect value, please use positive value\n");
+		} while (Correct != 1 || value<1) ;
+
+
+	return value;
+}
+
 int game(int Player, int NumOfPlayers, int Opponents)
 {
 	switch (Player){
@@ -29,14 +42,14 @@ int game(int Player, int NumOfPlayers, int Opponents)
 		name = name1;
 		printf("It's %s turn! \n", name);
 		printf ("Table has %d matches, how much would you take?\n", Count);
-		scanf("%d", Num);
+		Num = check(Num);
 		break;
 	case 2:
 		name = name2;
 		printf("It's %s turn! \n", name);
 		if (NumOfPlayers>=2) {
 			printf ("Table has %d matches, how much would you take?\n", Count);
-			scanf("%d", Num);
+			Num = check(Num);
 		} else {
 			AITurn();
 		}
@@ -46,7 +59,7 @@ int game(int Player, int NumOfPlayers, int Opponents)
 		printf("It's %s turn! \n", name);
 		if (NumOfPlayers>=3) {
 			printf ("Table has %d matches, how much would you take?\n", Count);
-			scanf("%d", Num));
+			Num = check(Num);
 
 		} else {
 			AITurn();
@@ -57,7 +70,7 @@ int game(int Player, int NumOfPlayers, int Opponents)
 		printf("It's %s turn! \n", name);
 		if (NumOfPlayers>=4) {
 			printf ("Table has %d matches, how much would you take?\n", Count);
-			scanf("%d", Num);
+			Num = check(Num);
 
 		} else {
 			AITurn();
