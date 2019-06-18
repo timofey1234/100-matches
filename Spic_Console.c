@@ -155,8 +155,13 @@ int main(){
 					break;
 			case 4: printf ("Player %s is winner \n", name4);
 					break;
+			printf ("Continue? Y/N\n");
+            if (getchar() != 'Y') wexist = false;
 			}
+            printf ("Continue? Y/N\n");
+            if (getchar() != 'Y') wexist = false;
 
+	}
 	return 0;
 }
 
