@@ -19,6 +19,38 @@ void AITurn(){
 
 }
 
+void start(int NumOfPlayers){
+	printf ("Please, enter names of all players \n");
+	printf ("Player 1: \n");
+	scanf("%s", name1);
+	if (NumOfPlayers >= 2) {
+		printf ("Player 2: \n");
+		scanf("%s", name2);
+	} else strncpy(name2,"AI1",sizeof(name3)-1);
+	if (NumOfPlayers >= 3) {
+		printf ("Player 3: \n");
+		scanf("%s", name3);
+	} else strncpy(name3,"AI2",sizeof(name3)-1);;
+	if (NumOfPlayers >= 4) {
+		printf ("Player 4: \n");
+		scanf("%s", name4);
+	} else strncpy(name4,"AI3",sizeof(name3)-1);;
+
+}
+
+int PlayerControl(int Player, int Opponents){
+	int n;
+	switch (Opponents) {
+		case 1: n=2; break;
+		case 2: n=2; break;
+		case 3: n=3; break;
+		default: n=4; break;
+	}
+		if (Player > n) Player = 1;
+		return Player;
+}
+
+
 int check(int value){
 
 	do {
@@ -85,6 +117,7 @@ int game(int Player, int NumOfPlayers, int Opponents)
 		printf("Incorrect choise, please try again!\n");
 	}
 	while (Count>0) {
+		Player = PlayerControl(Player, Opponents);
 		game(Player, NumOfPlayers, Opponents);
 	}
 
@@ -96,9 +129,8 @@ int main(){
 	int Player, NumOfPlayers, Opponents;
 	Player=1;
 	wexist = true;
-
-
 	while (wexist){
+
 
 			printf ("Number of opponents \n");
 			Opponents = check(Opponents);
@@ -109,7 +141,9 @@ int main(){
 					NumOfPlayers = Opponents;
 				}
 
+			start(NumOfPlayers);
 			Count = InitialCount;
+			Player = game(Player, NumOfPlayers, Opponents);
 			switch (Player){
 			default: printf ("There's something wrong with this code..\n");
 					break;
@@ -122,9 +156,6 @@ int main(){
 			case 4: printf ("Player %s is winner \n", name4);
 					break;
 			}
-            printf ("Continue? Y/N\n");
-            if (getchar() != 'Y') wexist = false;
-	}
 
 	return 0;
 }
